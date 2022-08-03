@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="{{url_for('static', filename='form.css')}}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <div class='main_div'>
+        <div class='box'>
+            <h1>Login Form</h1>
+
+            <form action="{{url_for('login_record')}}" method="POST">
+                <div class='inputBox'>
+                    <input type="email" name="email" id="email" autoComplete='off' required/>
+                    <label htmlFor='email'>Email</label>
+                </div>
+
+                <div class='inputBox'>
+                    <input type="password" name="password" id="password" autoComplete='off' required/>
+                    <label htmlFor='password'>Password</label>
+                </div>
+
+                <a href="/home"><input type="submit" name="" value="login"/></a><br/><br/>
+
+                <p>Don't have an account?<a href="/signup">Sign Up</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

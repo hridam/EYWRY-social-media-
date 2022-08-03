@@ -1,0 +1,37 @@
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Full Name</th>
+        <th>User Name</th>
+        <th>Email</th>
+        <th>Password</th>
+    </tr>
+    {% for row in list_users %}
+    <tr>
+        <td>{{row[0]}}</td>
+        <td>{{row[1]}}</td>
+        <td>{{row[2]}}</td>
+        <td>{{row[3]}}</td>
+        <td>{{row[4]}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<!-- The Modal -->
+					<div id="myModal" class="modal">
+
+						<!-- Modal content -->
+						<!-- <div class="modal-content">
+							<span class="close">&times;</span>
+
+							<div class='box'>
+								<h1>Login Form</h1>
+								<form action="{{url_for('')}}" method="POST">
+									<div class='inputBox'>
+										<textarea name="text" id="text" rows="10" cols="30" autoComplete='off' style="font-size: 1em;"></textarea>
+										<input type="text" name="email" id="email" autoComplete='off' required />
+									</div>
+									<a href="#"><input type="submit" name="" value="login" /></a><br /><br />
+								</form>
+							</div>
+						</div> -->

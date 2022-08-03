@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Home Page</title>
+	<link rel="stylesheet" href="{{url_for('static', filename='main.css')}}" />
+	<link rel="stylesheet" href="{{url_for('static', filename='form.css')}}" />
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<style>
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		
+		/* The Close Button */
+		.close {
+			color: #aaaaaa;
+			float: right;
+			font-size: 28px;
+			font-weight: bold;
+		}
+
+		.close:hover,
+		.close:focus {
+			color: #000;
+			text-decoration: none;
+			cursor: pointer;
+		}
+
+		textarea {
+			width: 200px;
+			height: 200px;
+		}
+
+		.button {
+			background-color: #ffffff;
+			/* Green */
+			border: none;
+			color: #35e2bd;
+			padding: 15px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 3px 0px 4px 870px;
+			cursor: pointer;
+		}
+
+		@media (max-width: 768px){
+			.button{
+			margin: 3px 0px 4px 120px;
+			}
+		}
+
+		.button4 {border-radius: 12px;}
+
+		.modal{
+			justify-content: center;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="wrapper_inner">
+			<div class="vertical_wrap">
+				<div class="backdrop"></div>
+				<div class="vertical_bar">
+					<div class="profile_info">
+						<div class="img_holder">
+							<img src="{{url_for('static', filename='EYWRY.png')}}" alt="profile_pic">
+						</div>
+					</div>
+					<ul class="menu">
+						<li><a href="/{{password_rs}}">
+								<span class="icon"><i class="fas fa-home"></i></span>
+								<span class="text">Home</span>
+							</a></li>
+						<li><a href="/your_post/{{password_rs}}" class="active">
+								<span class="icon"><i class="fas fa-file-alt"></i></span>
+								<span class="text">Your Posts</span>
+							</a></li>
+						<li><a href="/account/{{password_rs}}">
+								<span class="icon"><i class="fas fa-user"></i></span>
+								<span class="text">Account</span>
+							</a></li>
+						<li><a href="/about/{{password_rs}}">
+								<span class="icon"><i class="fas fa-cog"></i></span>
+								<span class="text">About</span>
+							</a></li>
+						<li><a href="/logout">
+								<span class="icon"><i class="fas fa-chart-pie"></i></span>
+								<span class="text">Logout</span>
+							</a></li>
+
+					</ul>
+
+
+				</div>
+			</div>
+			<div class="main_container">
+				<div class="top_bar">
+					<div class="hamburger">
+						<i class="fas fa-bars"></i>
+					</div>
+					<div class="logo">
+						E<span>ywry</span>
+					</div>
+					<div>
+						<button id="myBtn" class="button button4">Post</button>
+					</div>
+				</div>
+				<div id="myModal" class="modal">
+					<div class="box">
+						<h1>POST</h1>
+						
+						<form method="POST" action="{{url_for('post', password_rs = password_rs)}}">
+							<div class="inputbox">
+								<textarea name="text" class="text" id="text" autoComplete='off'
+									style="font-size: 1em;"></textarea>
+							</div>
+							<a href="/home"><input type="submit" value="Post" /></a>
+							<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+
+						</form>
+					</div>
+				</div>
+				<div class="container">
+					<div class="content">
+						{% for row in username %}
+						<div class="item">
+							<table>
+								<tr>
+									<td>{{row[1]}}</td>
+								</tr>
+							</table>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<script>
+		var hamburger = document.querySelector(".hamburger");
+		var wrapper = document.querySelector(".wrapper");
+		var backdrop = document.querySelector(".backdrop");
+
+		hamburger.addEventListener("click", function () {
+			wrapper.classList.add("active");
+		})
+
+		backdrop.addEventListener("click", function () {
+			wrapper.classList.remove("active");
+		})
+	</script>
+
+	<script>
+		var i = 0;
+		function buttonClick() {
+			document.getElementById('inc').value = ++i;
+		}
+	</script>
+
+	<script>
+		// Get the modal
+		var modal = document.getElementById("myModal");
+
+		// Get the button that opens the modal
+		var btn = document.getElementById("myBtn");
+
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[0];
+
+		// When the user clicks the button, open the modal 
+		btn.onclick = function () {
+			modal.style.display = "block";
+		}
+
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function () {
+			modal.style.display = "none";
+		}
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function (event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	</script>
+	<script>function closeForm() {
+		document.getElementById("myModal").style.display = "none";
+	}</script>
+
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
